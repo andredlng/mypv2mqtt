@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Installation script for mypv2mqtt and its dependencies
+#
+# (c) André Deuerling, 2025
+#
+
+uv venv venv
+
+. venv/bin/activate
+
+if ! uv pip install --editable .; then
+    echo "Editable install skipped (setuptools unavailable); run script uses src/ layout."
+fi

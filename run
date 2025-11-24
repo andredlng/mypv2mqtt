@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Run script for mypv2mqtt
+#
+# (c) André Deuerling, 2025
+#
+
+. venv/bin/activate
+
+export PYTHONPATH="$(cd "$(dirname "$0")" && pwd)/src${PYTHONPATH:+:$PYTHONPATH}"
+
+exec /usr/bin/env python -m mypv2mqtt "$@"
