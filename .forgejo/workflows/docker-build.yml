@@ -6,15 +6,9 @@ on:
 jobs:
   build:
     runs-on: docker
-    container:
-      image: node:22
-      env:
-        DOCKER_HOST: ${{ vars.DOCKER_HOST }}
+    env:
+      DOCKER_HOST: ${{ vars.DOCKER_HOST }}
     steps:
-      - name: Install docker
-        run: |
-          apt-get update && apt-get install -y docker.io
-
       - name: Checkout
         uses: actions/checkout@v4
 
