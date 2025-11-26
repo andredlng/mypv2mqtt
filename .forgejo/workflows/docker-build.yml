@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: docker
     container:
-      image: docker:alpine
+      image: docker:cli-alpine
       env:
         DOCKER_HOST: ${{ vars.DOCKER_HOST }}
     steps:
