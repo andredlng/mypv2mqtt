@@ -6,8 +6,10 @@ on:
 jobs:
   build:
     runs-on: docker
-    env:
-      DOCKER_HOST: ${{ vars.DOCKER_HOST }}
+    container:
+      image: docker:alpine
+      env:
+        DOCKER_HOST: ${{ vars.DOCKER_HOST }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
