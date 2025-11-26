@@ -13,7 +13,8 @@ jobs:
     steps:
       - name: Install node
         run: |
-          apk add --no-cache nodejs npm
+          apk add --no-cache nodejs npm catatonit && \
+          ln -s /usr/bin/catatonit /usr/local/bin/docker-init || true
 
       - name: Checkout
         uses: actions/checkout@v4
