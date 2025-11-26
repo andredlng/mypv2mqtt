@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: docker
     container:
-      image: docker:cli
+      image: docker:29-dind
       env:
         DOCKER_HOST: ${{ vars.DOCKER_HOST }}
     steps:
