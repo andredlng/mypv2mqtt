@@ -11,6 +11,10 @@ jobs:
       env:
         DOCKER_HOST: ${{ vars.DOCKER_HOST }}
     steps:
+      - name: Install node
+        run: |
+          apk add --no-cache nodejs npm
+
       - name: Checkout
         uses: actions/checkout@v4
 
