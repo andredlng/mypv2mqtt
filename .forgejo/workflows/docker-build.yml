@@ -7,14 +7,13 @@ jobs:
   build:
     runs-on: docker
     container:
-      image: docker:29-dind
+      image: node:22-alpine
       env:
         DOCKER_HOST: ${{ vars.DOCKER_HOST }}
     steps:
-      - name: Install node
+      - name: Install docker
         run: |
-          apk add --no-cache nodejs npm catatonit && \
-          ln -s /usr/bin/catatonit /usr/local/bin/docker-init || true
+          apk add --no-cache docker
 
       - name: Checkout
         uses: actions/checkout@v4
