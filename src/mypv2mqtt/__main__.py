@@ -18,9 +18,12 @@ def publish_payloads(data):
     for key in ('device', 'fwversion', 'psversion', 'coversion', 'temp1'):
         if key not in data:
             continue
-        topic = f"{base_topic}/{key}" if base_topic else key
-        logging.info("Topic: {}, Payload: {}".format(topic, data[key]))
-        iot_daemonize.mqtt_client.publish(topic, data[key])
+        try:
+            topic = f"{base_topic}/{key}" if base_topic else key
+            logging.info("Topic: {}, Payload: {}".format(topic, data[key]))
+            iot_daemonize.mqtt_client.publish(topic, data[key])
+        except Exception:
+            logging.error(traceback.format_exc())
 
 
 async def poll_once(session):
@@ -28,6 +31,7 @@ async def poll_once(session):
         async with session.get(config.api_url) as resp:
             resp.raise_for_status()
             payload = await resp.json(content_type=None)
+            logging.info("URL: {}, Payload: {}".format(config.api_url, payload))
             if isinstance(payload, dict):
                 publish_payloads(payload)
     except asyncio.CancelledError:
